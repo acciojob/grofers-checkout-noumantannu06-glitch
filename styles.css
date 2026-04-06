@@ -1,2 +1,4 @@
-
-/* Your CSS Code here. */
+ table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 12px; }
+        th { background: #f8f9fa; }
+        .prices { font-weight: bold; text-align: right; }
