@@ -9,11 +9,9 @@ const getSum = () => {
         prices.forEach(p => total += parseFloat(p.textContent) || 0);
         
         // Create total row
-        const tbody = document.querySelector('tbody');
+        const tbody = document.querySelector('tbody') || document.querySelector('table');
         const row = document.createElement('tr');
-        row.innerHTML = `
-        <td>Total</td>
-        <td id="ans" data-ns-test="grandTotal">${total}</td>
+        row.innerHTML = `<td>Total</td><td data-ns-test="grandTotal" id="ans">${total}</td>`;
         tbody.appendChild(row);
 
 };
