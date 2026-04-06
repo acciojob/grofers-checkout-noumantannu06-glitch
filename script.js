@@ -4,44 +4,16 @@ document.body.appendChild(getSumBtn);
 
 const getSum = () => {
 //Add your code here
-function showTotal() {
-            // Get all price elements using class selector
-            const priceElements = document.querySelectorAll('.prices');
-            
-            let total = 0;
-            priceElements.forEach(element => {
-                const price = parseFloat(element.textContent.trim());
-                if (!isNaN(price)) {
-                    total += price;
-                }
-            });
-            
-            // Create total row
-            const table = document.querySelector('table');
-            const tbody = table.querySelector('tbody');
-            
-            // Remove existing total row
-            const existingTotal = tbody.querySelector('tr:last-child td:nth-child(2)');
-            if (existingTotal && existingTotal.textContent.includes('Total')) {
-                tbody.deleteRow(-1);
-            }
-            
-            // Add new total row
-            const totalRow = document.createElement('tr');
-            const totalCell1 = document.createElement('td');
-            const totalCell2 = document.createElement('td');
-            
-            totalCell1.textContent = 'Total';
-            totalCell2.className = 'prices';
-            totalCell2.textContent = '₹' + total.toLocaleString();
-            
-            totalRow.appendChild(totalCell1);
-            totalRow.appendChild(totalCell2);
-            tbody.appendChild(totalRow);
-        }
+ // Sum prices dynamically
+        const prices = document.querySelectorAll('[data-ns-test="prices"]');
+        let total = 0;
+        prices.forEach(p => total += parseFloat(p.textContent) || 0);
         
-        // Run on page load
-        document.addEventListener('DOMContentLoaded', showTotal);
+        // Create total row
+        const tbody = document.querySelector('tbody');
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>Total</td><td data-ns-test="grandTotal" id="ans">${total}</td>`;
+        tbody.appendChild(row);
 
 };
 
