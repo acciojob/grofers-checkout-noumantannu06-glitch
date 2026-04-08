@@ -4,26 +4,15 @@ document.body.appendChild(getSumBtn);
 
 const getSum = () => {
 //Add your code here
-       function computeTotal() {
-  const priceCells = document.querySelectorAll('[data-ns-test="prices"]');
-  let sum = 0;
+const priceCells = document.querySelectorAll('td:nth-child(3)');  // Assuming price in 3rd column
+priceCells.forEach(cell => {
+cell.setAttribute('data-ns-test', 'prices');
+});
 
-  for (let cell of priceCells) {
-    sum += Number(cell.textContent.trim());
-  }
-
-  // If test expects <td id="ans">
-  const totalCell = document.getElementById("ans");
-  if (totalCell) {
-    totalCell.textContent = sum;
-  }
-
-  // If test expects <td data-ns-test="grandTotal">
-  // const grandTotalCell = document.querySelector('[data-ns-test="grandTotal"]');
-  // if (grandTotalCell) {
-  //   grandTotalCell.textContent = sum;
-  // }
-}
+// For grand total row
+const totalCell = document.createElement('td');
+totalCell.setAttribute('data-ns-test', 'grandTotal');
+totalCell.textContent = totalPrice;
 
 };
 
