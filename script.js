@@ -1,18 +1,22 @@
-const getSum = () => {
-  const priceCells = document.querySelectorAll('td:nth-child(3)');  // Or '.prices'
-  let totalPrice = 0;
-  
-  priceCells.forEach(cell => {
-    cell.setAttribute('data-ns-test', 'prices');
-    totalPrice += parseFloat(cell.textContent) || 0;
+// Wait for DOM to load
+document.addEventListener("DOMContentLoaded", function () {
+  const table = document.getElementById("groceryTable");
+  const priceCells = document.querySelectorAll("[data-ns-test='prices']");
+  let total = 0;
+
+  // Sum all prices
+  priceCells.forEach((cell) => {
+    const value = parseFloat(cell.textContent) || 0;
+    total += value;
   });
-  
-  // Create new row at table end
-  const table = document.querySelector('table');
-  const newRow = table.insertRow();
-  const totalCell = newRow.insertCell(0);
-  totalCell.colSpan = 3;  // Span columns
-  totalCell.setAttribute('data-ns-test', 'grandTotal');
-  totalCell.textContent = `Total: ₹${totalPrice.toFixed(2)}`;
-  totalCell.style.fontWeight = 'bold';
-};
+
+  // Create total row
+  const totalRow = document.createElement("tr");
+  const totalCell = document.createElement("td");
+  totalCell.setAttribute("data-ns-test", "grandTotal");
+  totalCell.colSpan = 2;
+  totalCell.textContent = total;
+
+  totalRow.appendChild(totalCell);
+  table.querySelector("tbody").appendChild(totalRow);
+});
