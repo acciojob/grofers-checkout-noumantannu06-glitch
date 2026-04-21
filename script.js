@@ -1,31 +1,31 @@
-  document.addEventListener('DOMContentLoaded', function() {
-            // Step 1: Get all price cells using class selector
-            const priceCells = document.querySelectorAll('.prices');
+ document.addEventListener('DOMContentLoaded', function() {
+            const priceCells = document.querySelectorAll('[data-ns-test="prices"]');
+            const tbody = document.querySelector('#cart-tbody');
+            const checkoutBtn = document.getElementById('checkout-btn');
             
-            // Step 2: Sum prices safely (parseFloat handles decimals/currency symbols)
+            // Calculate total
             let total = 0;
             priceCells.forEach(cell => {
-                const priceText = cell.textContent.trim();
-                const priceNum = parseFloat(priceText);
-                if (!isNaN(priceNum)) {
-                    total += priceNum;
-                }
+                const priceNum = parseFloat(cell.textContent.trim());
+                if (!isNaN(priceNum)) total += priceNum;
             });
             
-            // Step 3: Find table body
-            const table = document.querySelector('table');
-            const tbody = table.tBodies[0] || table;
-            
-            // Step 4: Create total row with data-ns-test for Cypress
+            // Add grand total row
             const totalRow = document.createElement('tr');
+            totalRow.className = 'grand-total-row';
             const totalCell = document.createElement('td');
             totalCell.setAttribute('data-ns-test', 'grandTotal');
-            totalCell.colSpan = 2; // Span both columns
+            totalCell.colSpan = 2;
             totalCell.textContent = `Grand Total: ₹${total.toFixed(2)}`;
             totalRow.appendChild(totalCell);
-            
-            // Step 5: Append to table body
             tbody.appendChild(totalRow);
             
-            console.log(`Total calculated: ₹${total.toFixed(2)}`); // Debug log
+            // Checkout functionality (for button interaction)
+            checkoutBtn.addEventListener('click', function() {
+                document.getElementById('total-display').textContent = `₹${total.toFixed(2)}`;
+                checkoutBtn.style.display = 'none';
+                document.getElementById('checkout-complete').style.display = 'block';
+            });
+            
+            console.log(`Grofers Checkout ready. Total: ₹${total.toFixed(2)}`);
         });

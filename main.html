@@ -8,28 +8,41 @@
 
 <body>
     <!-- the entire body must be written by student -->
-    <table >
-    <caption>
-      Monthly savings
-    </caption>
-         <table id="grocery-table" border="1">
-  <tr>
-    <th class="item">Item</th>
-    <th class="prices">Price</th>
-  </tr>
-  <tr>
-    <td class="item">Apples</td>
-    <td class="prices">50</td>
-  </tr>
-  <tr>
-    <td class="item">Bananas</td>
-    <td class="prices">30</td>
-  </tr>
-  <tr>
-    <td class="item">Oranges</td>
-    <td class="prices">40</td>
-  </tr>
-</table>
+     <h1>Grofers Checkout</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price (₹)</th>
+            </tr>
+        </thead>
+        <tbody id="cart-tbody">
+            <tr>
+                <td class="item">Apples (1kg)</td>
+                <td class="prices" data-ns-test="prices">150.00</td>
+            </tr>
+            <tr>
+                <td class="item">Milk (1L)</td>
+                <td class="prices" data-ns-test="prices">65.50</td>
+            </tr>
+            <tr>
+                <td class="item">Bread (500g)</td>
+                <td class="prices" data-ns-test="prices">45.00</td>
+            </tr>
+            <tr>
+                <td class="item">Eggs (6 pcs)</td>
+                <td class="prices" data-ns-test="prices">72.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="checkout-section">
+        <button id="checkout-btn" data-ns-test="checkout-button">Proceed to Checkout</button>
+        <div id="checkout-complete" data-ns-test="complete-message">
+            Checkout Complete! Total: <span id="total-display"></span>
+        </div>
+    </div>
 
     <script type="text/javascript" src="./script.js">
 </script>
