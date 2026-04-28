@@ -20,6 +20,7 @@ function calculateTotal() {
             // Span across both columns, add required class/attributes for tests
             totalCell.colSpan = 2;
             totalCell.className = 'total';
+            totalCell.setAttribute('data-ns-test', 'grandTotal');
             totalCell.textContent = `Total: ₹${total.toFixed(2)}`;
             
             // Append total row (remove existing if any for re-runs)
@@ -30,6 +31,14 @@ function calculateTotal() {
             totalRow.appendChild(totalCell);
             tbody.appendChild(totalRow);
         }
+
+        // Checkout button functionality
+        const checkoutBtn = document.querySelector('button[data-ns-test="checkout-button"]');
+        checkoutBtn.addEventListener('click', () => {
+            const total = Array.from(document.querySelectorAll('.prices'))
+                .reduce((sum, cell) => sum + (parseFloat(cell.textContent.trim()) || 0), 0);
+            alert(`Checkout successful! Total: ₹${total.toFixed(2)}`);
+        });
         
         // Run on page load
         document.addEventListener('DOMContentLoaded', calculateTotal);
