@@ -9,7 +9,6 @@
 <body>
     <!-- the entire body must be written by student -->
      <h1>Grofers Checkout</h1>
-    
     <table>
     <thead>
       <tr>
@@ -18,7 +17,6 @@
       </tr>
     </thead>
     <tbody>
-      <!-- items with class="item" -->
       <tr class="item">
         <td>Apple</td>
         <td data-ns-test="prices" class="prices">120</td>
@@ -33,6 +31,11 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- Add this button so Cypress finds it -->
+  <button id="update-total" data-ns-test="updateTotal">
+    Update Total
+  </button>
 
     <script type="text/javascript" src="./script.js">
 </script>

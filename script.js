@@ -1,25 +1,32 @@
- // get all price cells
-    const priceCells = document.querySelectorAll(".prices");
+ // function to calculate total and add row
+    function calculateTotal() {
+      const priceCells = document.querySelectorAll(".prices");
+      let totalPrice = 0;
 
-    let totalPrice = 0;
+      priceCells.forEach(cell => {
+        const value = parseFloat(cell.textContent) || 0;
+        totalPrice += value;
+      });
 
-    // sum all prices
-    priceCells.forEach(cell => {
-      const value = parseFloat(cell.textContent) || 0;
-      totalPrice += value;
-    });
+      const table = document.querySelector("table");
+      // remove any existing total row first (optional, to avoid duplicates)
+      const existingTotal = document.querySelector("[data-ns-test='grandTotal']");
+      if (existingTotal) {
+        existingTotal.closest("tr").remove();
+      }
 
-    // get the table
-    const table = document.querySelector("table");
+      const totalRow = document.createElement("tr");
+      const totalCell = document.createElement("td");
+      totalCell.setAttribute("colspan", "2");
+      totalCell.setAttribute("data-ns-test", "grandTotal");
+      totalCell.textContent = totalPrice;
 
-    // create total row
-    const totalRow = document.createElement("tr");
-    const totalCell = document.createElement("td");
+      totalRow.appendChild(totalCell);
+      table.appendChild(totalRow);
+    }
 
-    // single cell spanning both columns
-    totalCell.setAttribute("colspan", "2");
-    totalCell.setAttribute("data-ns-test", "grandTotal");
-    totalCell.textContent = totalPrice;
+    // run once on load
+    calculateTotal();
 
-    totalRow.appendChild(totalCell);
-    table.appendChild(totalRow);
+    // optional: run again when button is clicked
+    document.getElementById("update-total").addEventListener("click", calculateTotal);
