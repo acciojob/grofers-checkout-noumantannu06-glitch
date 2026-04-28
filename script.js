@@ -1,54 +1,35 @@
-// Run immediately AND observe DOM changes (for test price injection)
-        function calculateTotal() {
-            const priceCells = document.querySelectorAll('[data-ns-test="prices"]');
-            const tbody = document.querySelector('#cart-items');
+function calculateTotal() {
+            // Get all price elements using class selector (dynamic for changes)
+            const priceElements = document.querySelectorAll('.prices');
             
             let total = 0;
-            priceCells.forEach(cell => {
+            priceElements.forEach(cell => {
                 const priceText = cell.textContent.trim();
-                const priceNum = parseFloat(priceText);
-                if (!isNaN(priceNum)) {
-                    total += priceNum;
+                const price = parseFloat(priceText);
+                if (!isNaN(price)) {
+                    total += price;
                 }
             });
             
-            // INTEGER ONLY - matches test expectations exactly
-            const totalInt = Math.floor(total);
+            // Create new total row
+            const table = document.querySelector('table');
+            const tbody = table.querySelector('tbody');
+            const totalRow = document.createElement('tr');
+            const totalCell = document.createElement('td');
             
-            // Update grand total row
-            let totalRow = document.querySelector('[data-ns-test="grandTotal"]');
-            if (!totalRow) {
-                totalRow = document.createElement('tr');
-                const totalCell = document.createElement('td');
-                totalCell.setAttribute('data-ns-test', 'grandTotal');
-                totalCell.colSpan = 2;
-                totalCell.innerHTML = `<strong>Grand Total: ₹${total.toFixed(2)}</strong>`;
-                totalRow.appendChild(totalCell);
-                tbody.appendChild(totalRow);
-            } else {
-                totalRow.querySelector('td').innerHTML = `<strong>Grand Total: ₹${total.toFixed(2)}</strong>`;
+            // Span across both columns, add required class/attributes for tests
+            totalCell.colSpan = 2;
+            totalCell.className = 'total';
+            totalCell.textContent = `Total: ₹${total.toFixed(2)}`;
+            
+            // Append total row (remove existing if any for re-runs)
+            const existingTotal = tbody.querySelector('.total');
+            if (existingTotal) {
+                existingTotal.parentElement.remove();
             }
-            
-            // CRITICAL: #ans gets PLAIN INTEGER (410 or 333)
-            const ansElement = document.getElementById('ans');
-            ansElement.textContent = totalInt.toString();
+            totalRow.appendChild(totalCell);
+            tbody.appendChild(totalRow);
         }
-
-        // Initial calculation
+        
+        // Run on page load
         document.addEventListener('DOMContentLoaded', calculateTotal);
-        
-        // Re-calculate on DOM changes (tests modify prices)
-        const observer = new MutationObserver(calculateTotal);
-        observer.observe(document.body, { 
-            childList: true, 
-            subtree: true, 
-            characterData: true 
-        });
-        
-        // Button handler
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('[data-ns-test="checkout-button"]')) {
-                const ans = document.getElementById('ans').textContent;
-                alert(`Checkout successful! Total: ${ans}`);
-            }
-        });

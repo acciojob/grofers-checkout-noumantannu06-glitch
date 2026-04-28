@@ -8,27 +8,39 @@
 
 <body>
     <!-- the entire body must be written by student -->
-      <h1>Grofers Checkout</h1>
+    
+    <h1>Grofers Checkout</h1>
     
     <table>
         <thead>
-            <tr><th>Item</th><th>Price (₹)</th></tr>
+            <tr>
+                <th>Item</th>
+                <th>Price (₹)</th>
+            </tr>
         </thead>
-        <tbody id="cart-tbody">
-            <tr><td class="item">Apples (1kg)</td><td class="prices" data-ns-test="prices">150.00</td></tr>
-            <tr><td class="item">Milk (1L)</td><td class="prices" data-ns-test="prices">65.50</td></tr>
-            <tr><td class="item">Bread (500g)</td><td class="prices" data-ns-test="prices">45.00</td></tr>
-            <tr><td class="item">Eggs (6 pcs)</td><td class="prices" data-ns-test="prices">72.00</td></tr>
+        <tbody>
+            <tr>
+                <td class="item">Apples (1kg)</td>
+                <td class="prices">250</td>
+            </tr>
+            <tr>
+                <td class="item">Milk (1L)</td>
+                <td class="prices">65</td>
+            </tr>
+            <tr>
+                <td class="item">Bread</td>
+                <td class="prices">45</td>
+            </tr>
+            <tr>
+                <td class="item">Eggs (6)</td>
+                <td class="prices">120</td>
+            </tr>
+            <tr>
+                <td class="item">Rice (1kg)</td>
+                <td class="prices">80</td>
+            </tr>
         </tbody>
     </table>
-
-    <!-- Checkout UI for tests -->
-    <div style="margin: 20px 0;">
-        <button id="checkout-btn" data-ns-test="checkout-button">Proceed to Checkout</button>
-    </div>
-
-    <!-- REQUIRED: #ans for Cypress test assertion -->
-    <div id="ans"></div>
 
     <script type="text/javascript" src="./script.js">
 </script>
