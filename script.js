@@ -1,5 +1,6 @@
-function calculateTotal() {
-      const priceCells = document.querySelectorAll(".prices");   // this is what the test wants
+    function calculateTotal() {
+      // 1. Get all prices (must have class="prices")
+      const priceCells = document.querySelectorAll(".prices");
       let totalPrice = 0;
 
       priceCells.forEach(cell => {
@@ -7,7 +8,10 @@ function calculateTotal() {
         totalPrice += value;
       });
 
+      // 2. Update table with grand total row
       const table = document.querySelector("table");
+
+      // Remove any existing grand total row
       const existingTotal = document.querySelector("[data-ns-test='grandTotal']");
       if (existingTotal) {
         existingTotal.closest("tr").remove();
@@ -22,14 +26,14 @@ function calculateTotal() {
       totalRow.appendChild(totalCell);
       table.appendChild(totalRow);
 
-      // Update #ans so the test can read the total
+      // 3. Write the same total into #ans so tests can read it
       const ans = document.getElementById("ans");
       if (ans) {
         ans.textContent = totalPrice;
       }
     }
 
-    // Run once on load
+    // Run once on page load (very important for test)
     calculateTotal();
 
     // Also run when button is clicked
