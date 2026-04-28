@@ -1,5 +1,5 @@
-
-    function calculateTotal() {
+function calculateTotal() {
+      // 1. Read all prices
       const priceCells = document.querySelectorAll(".prices");
       let totalPrice = 0;
 
@@ -8,6 +8,7 @@
         totalPrice += value;
       });
 
+      // 2. Update table with total row
       const table = document.querySelector("table");
 
       // Remove any existing grand total row
@@ -16,7 +17,6 @@
         existingTotal.closest("tr").remove();
       }
 
-      // Add total row in table
       const totalRow = document.createElement("tr");
       const totalCell = document.createElement("td");
       totalCell.setAttribute("colspan", "2");
@@ -26,15 +26,15 @@
       totalRow.appendChild(totalCell);
       table.appendChild(totalRow);
 
-      // Write the **same** total into #ans
+      // 3. Write the **same** total into #ans
       const ans = document.getElementById("ans");
       if (ans) {
         ans.textContent = totalPrice;
       }
     }
 
-    // Run once on page load
+    // Run once on load
     calculateTotal();
 
-    // Run again when button is clicked
+    // Also run when button is clicked
     document.getElementById("update-total").addEventListener("click", calculateTotal);
