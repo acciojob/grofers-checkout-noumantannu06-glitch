@@ -11,37 +11,28 @@
      <h1>Grofers Checkout</h1>
     
     <table>
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Price (₹)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="item">Apples (1kg)</td>
-                <td class="prices" data-ns-test="prices">250</td>
-            </tr>
-            <tr>
-                <td class="item">Milk (1L)</td>
-                <td class="prices" data-ns-test="prices">65</td>
-            </tr>
-            <tr>
-                <td class="item">Bread</td>
-                <td class="prices" data-ns-test="prices">45</td>
-            </tr>
-            <tr>
-                <td class="item">Eggs (6)</td>
-                <td class="prices" data-ns-test="prices">120</td>
-            </tr>
-            <tr>
-                <td class="item">Rice (1kg)</td>
-                <td class="prices" data-ns-test="prices">80</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <button data-ns-test="checkout-button">Checkout</button>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- items with class="item" -->
+      <tr class="item">
+        <td>Apple</td>
+        <td data-ns-test="prices" class="prices">120</td>
+      </tr>
+      <tr class="item">
+        <td>Banana</td>
+        <td data-ns-test="prices" class="prices">80</td>
+      </tr>
+      <tr class="item">
+        <td>Milk</td>
+        <td data-ns-test="prices" class="prices">45</td>
+      </tr>
+    </tbody>
+  </table>
 
     <script type="text/javascript" src="./script.js">
 </script>
