@@ -8,26 +8,38 @@
 
 <body>
     <!-- the entire body must be written by student -->
-       <h1>Grofers Checkout</h1>
+	<h1>Grofers Checkout</h1>
 
- <table>
-  <!-- Items with prices -->
-  <tr data-ns-test="item">
-    <td>Rice</td>
-    <td data-ns-test="price">₹ 100</td>
-  </tr>
-  <tr data-ns-test="item">
-    <td>Oil</td>
-    <td data-ns-test="price">₹ 310</td>
-  </tr>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="item">
+        <td>Apple</td>
+        <td data-ns-test="prices" class="prices">120</td>
+      </tr>
+      <tr class="item">
+        <td>Banana</td>
+        <td data-ns-test="prices" class="prices">80</td>
+      </tr>
+      <tr class="item">
+        <td>Milk</td>
+        <td data-ns-test="prices" class="prices">45</td>
+      </tr>
+    </tbody>
+  </table>
 
   <button id="update-total" data-ns-test="updateTotal">
     Update Total
   </button>
 
-<!-- Total sum display -->
-<div id="ans">0</div>
+       
+       <!-- Total sum display -->
+       <div id="ans">0</div>
 
     <script type="text/javascript" src="./script.js">
 </script>
